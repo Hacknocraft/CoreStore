@@ -250,7 +250,7 @@ CSWhere *_Nonnull CSWherePredicate(NSPredicate *_Nonnull predicate) CORESTORE_RE
         self.releaseArray = NULL;
     }
     self.safeAffectedStores = affectedStores;
-    [super setAffectedStores:affectedStores];
+    //    [super setAffectedStores:affectedStores];
     self.releaseArray = CFBridgingRetain([super affectedStores]);
 }
 
