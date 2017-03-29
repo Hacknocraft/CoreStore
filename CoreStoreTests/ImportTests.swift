@@ -36,40 +36,40 @@ class ImportTests: BaseTestDataTestCase {
     @objc
     dynamic func test_ThatAttributeProtocols_BehaveCorrectly() {
         
-        XCTAssertEqual(NSNumber.cs_fromNativeType(NSNumber(value: true))?.boolValue, true)
-        XCTAssertEqual(NSNumber.cs_fromNativeType(NSNumber(value: Int16.max))?.int16Value, Int16.max)
-        XCTAssertEqual(NSNumber.cs_fromNativeType(NSNumber(value: Int32.max))?.int32Value, Int32.max)
-        XCTAssertEqual(NSNumber.cs_fromNativeType(NSNumber(value: Int64.max))?.int64Value, Int64.max)
-        XCTAssertEqual(NSNumber.cs_fromNativeType(NSNumber(value: MAXFLOAT))?.floatValue, MAXFLOAT)
-        XCTAssertEqual(NSNumber.cs_fromNativeType(NSNumber(value: Double(MAXFLOAT)))?.doubleValue, Double(MAXFLOAT))
+        XCTAssertEqual(NSNumber.cs_fromImportableNativeType(NSNumber(value: true))?.boolValue, true)
+        XCTAssertEqual(NSNumber.cs_fromImportableNativeType(NSNumber(value: Int16.max))?.int16Value, Int16.max)
+        XCTAssertEqual(NSNumber.cs_fromImportableNativeType(NSNumber(value: Int32.max))?.int32Value, Int32.max)
+        XCTAssertEqual(NSNumber.cs_fromImportableNativeType(NSNumber(value: Int64.max))?.int64Value, Int64.max)
+        XCTAssertEqual(NSNumber.cs_fromImportableNativeType(NSNumber(value: MAXFLOAT))?.floatValue, MAXFLOAT)
+        XCTAssertEqual(NSNumber.cs_fromImportableNativeType(NSNumber(value: Double(MAXFLOAT)))?.doubleValue, Double(MAXFLOAT))
         
-        XCTAssertEqual(NSDecimalNumber.cs_fromNativeType(NSDecimalNumber(string: "1"))?.boolValue, true)
-        XCTAssertEqual(NSDecimalNumber.cs_fromNativeType(NSDecimalNumber(string: Int16.max.description))?.int16Value, Int16.max)
-        XCTAssertEqual(NSDecimalNumber.cs_fromNativeType(NSDecimalNumber(string: Int32.max.description))?.int32Value, Int32.max)
-        XCTAssertEqual(NSDecimalNumber.cs_fromNativeType(NSDecimalNumber(string: Int64.max.description))?.int64Value, Int64.max)
-        XCTAssertEqual(NSDecimalNumber.cs_fromNativeType(NSDecimalNumber(string: MAXFLOAT.description))?.doubleValue, NSDecimalNumber(string: MAXFLOAT.description).doubleValue)
-        XCTAssertEqual(NSDecimalNumber.cs_fromNativeType(NSDecimalNumber(string: MAXFLOAT.description))?.floatValue, NSDecimalNumber(string: MAXFLOAT.description).floatValue)
+        XCTAssertEqual(NSDecimalNumber.cs_fromImportableNativeType(NSDecimalNumber(string: "1"))?.boolValue, true)
+        XCTAssertEqual(NSDecimalNumber.cs_fromImportableNativeType(NSDecimalNumber(string: Int16.max.description))?.int16Value, Int16.max)
+        XCTAssertEqual(NSDecimalNumber.cs_fromImportableNativeType(NSDecimalNumber(string: Int32.max.description))?.int32Value, Int32.max)
+        XCTAssertEqual(NSDecimalNumber.cs_fromImportableNativeType(NSDecimalNumber(string: Int64.max.description))?.int64Value, Int64.max)
+        XCTAssertEqual(NSDecimalNumber.cs_fromImportableNativeType(NSDecimalNumber(string: MAXFLOAT.description))?.doubleValue, NSDecimalNumber(string: MAXFLOAT.description).doubleValue)
+        XCTAssertEqual(NSDecimalNumber.cs_fromImportableNativeType(NSDecimalNumber(string: MAXFLOAT.description))?.floatValue, NSDecimalNumber(string: MAXFLOAT.description).floatValue)
         
-        XCTAssertEqual(NSNumber.cs_fromNativeType(NSDecimalNumber(string: "1"))?.boolValue, true)
-        XCTAssertEqual(NSNumber.cs_fromNativeType(NSDecimalNumber(string: Int16.max.description))?.int16Value, Int16.max)
-        XCTAssertEqual(NSNumber.cs_fromNativeType(NSDecimalNumber(string: Int32.max.description))?.int32Value, Int32.max)
-        XCTAssertEqual(NSNumber.cs_fromNativeType(NSDecimalNumber(string: Int64.max.description))?.int64Value, Int64.max)
-        XCTAssertEqual(NSNumber.cs_fromNativeType(NSDecimalNumber(string: MAXFLOAT.description))?.doubleValue, NSDecimalNumber(string: MAXFLOAT.description).doubleValue)
-        XCTAssertEqual(NSNumber.cs_fromNativeType(NSDecimalNumber(string: MAXFLOAT.description))?.floatValue, NSDecimalNumber(string: MAXFLOAT.description).floatValue)
+        XCTAssertEqual(NSNumber.cs_fromImportableNativeType(NSDecimalNumber(string: "1"))?.boolValue, true)
+        XCTAssertEqual(NSNumber.cs_fromImportableNativeType(NSDecimalNumber(string: Int16.max.description))?.int16Value, Int16.max)
+        XCTAssertEqual(NSNumber.cs_fromImportableNativeType(NSDecimalNumber(string: Int32.max.description))?.int32Value, Int32.max)
+        XCTAssertEqual(NSNumber.cs_fromImportableNativeType(NSDecimalNumber(string: Int64.max.description))?.int64Value, Int64.max)
+        XCTAssertEqual(NSNumber.cs_fromImportableNativeType(NSDecimalNumber(string: MAXFLOAT.description))?.doubleValue, NSDecimalNumber(string: MAXFLOAT.description).doubleValue)
+        XCTAssertEqual(NSNumber.cs_fromImportableNativeType(NSDecimalNumber(string: MAXFLOAT.description))?.floatValue, NSDecimalNumber(string: MAXFLOAT.description).floatValue)
         
-        XCTAssertNil(NSDecimalNumber.cs_fromNativeType(NSNumber(value: true)))
-        XCTAssertNil(NSDecimalNumber.cs_fromNativeType(NSNumber(value: Int16.max)))
-        XCTAssertNil(NSDecimalNumber.cs_fromNativeType(NSNumber(value: Int32.max)))
-        XCTAssertNil(NSDecimalNumber.cs_fromNativeType(NSNumber(value: Int64.max)))
-        XCTAssertNil(NSDecimalNumber.cs_fromNativeType(NSNumber(value: MAXFLOAT)))
-        XCTAssertNil(NSDecimalNumber.cs_fromNativeType(NSNumber(value: Double(MAXFLOAT))))
+        XCTAssertNil(NSDecimalNumber.cs_fromImportableNativeType(NSNumber(value: true)))
+        XCTAssertNil(NSDecimalNumber.cs_fromImportableNativeType(NSNumber(value: Int16.max)))
+        XCTAssertNil(NSDecimalNumber.cs_fromImportableNativeType(NSNumber(value: Int32.max)))
+        XCTAssertNil(NSDecimalNumber.cs_fromImportableNativeType(NSNumber(value: Int64.max)))
+        XCTAssertNil(NSDecimalNumber.cs_fromImportableNativeType(NSNumber(value: MAXFLOAT)))
+        XCTAssertNil(NSDecimalNumber.cs_fromImportableNativeType(NSNumber(value: Double(MAXFLOAT))))
         
-        XCTAssertEqual(true.cs_toNativeType(), NSNumber(value: true))
-        XCTAssertEqual(Int16.max.cs_toNativeType(), NSNumber(value: Int16.max))
-        XCTAssertEqual(Int32.max.cs_toNativeType(), NSNumber(value: Int32.max))
-        XCTAssertEqual(Int64.max.cs_toNativeType(), NSNumber(value: Int64.max))
-        XCTAssertEqual(MAXFLOAT.cs_toNativeType(), NSNumber(value: MAXFLOAT))
-        XCTAssertEqual(Double(MAXFLOAT).cs_toNativeType(), NSNumber(value: Double(MAXFLOAT)))
+        XCTAssertEqual(true.cs_toQueryableNativeType(), NSNumber(value: true))
+        XCTAssertEqual(Int16.max.cs_toQueryableNativeType(), NSNumber(value: Int16.max))
+        XCTAssertEqual(Int32.max.cs_toQueryableNativeType(), NSNumber(value: Int32.max))
+        XCTAssertEqual(Int64.max.cs_toQueryableNativeType(), NSNumber(value: Int64.max))
+        XCTAssertEqual(MAXFLOAT.cs_toQueryableNativeType(), NSNumber(value: MAXFLOAT))
+        XCTAssertEqual(Double(MAXFLOAT).cs_toQueryableNativeType(), NSNumber(value: Double(MAXFLOAT)))
     }
     
     @objc
@@ -1083,28 +1083,11 @@ extension TestEntity1: ImportableUniqueObject {
     
     // MARK: ImportableUniqueObject
     
-    typealias UniqueIDType = NSNumber
+    typealias UniqueIDType = Int64
     
     static var uniqueIDKeyPath: String {
         
         return #keyPath(TestEntity1.testEntityID)
-    }
-    
-    var uniqueIDValue: NSNumber {
-        
-        get {
-            
-            guard let ID = self.testEntityID else {
-                
-                XCTFail()
-                return 0
-            }
-            return ID
-        }
-        set {
-            
-            self.testEntityID = newValue
-        }
     }
     
     static func shouldUpdate(from source: ImportSource, in transaction: BaseDataTransaction) -> Bool {
@@ -1112,13 +1095,13 @@ extension TestEntity1: ImportableUniqueObject {
         return source["skip_update"] == nil
     }
     
-    static func uniqueID(from source: ImportSource, in transaction: BaseDataTransaction) throws -> NSNumber? {
+    static func uniqueID(from source: ImportSource, in transaction: BaseDataTransaction) throws -> Int64? {
         
         if let _ = source["throw_on_id"] {
             
             throw TestIDError()
         }
-        return source[(#keyPath(TestEntity1.testEntityID))] as? NSNumber
+        return source[(#keyPath(TestEntity1.testEntityID))] as? Int64
     }
     
     func update(from source: ImportSource, in transaction: BaseDataTransaction) throws {

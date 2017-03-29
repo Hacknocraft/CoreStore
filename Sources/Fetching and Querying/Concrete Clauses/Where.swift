@@ -27,28 +27,36 @@ import Foundation
 import CoreData
 
 
-public func && (left: Where, right: Where) -> Where {
-    
-    return Where(NSCompoundPredicate(type: .and, subpredicates: [left.predicate, right.predicate]))
-}
-
-public func || (left: Where, right: Where) -> Where {
-    
-    return Where(NSCompoundPredicate(type: .or, subpredicates: [left.predicate, right.predicate]))
-}
-
-public prefix func ! (clause: Where) -> Where {
-    
-    return Where(NSCompoundPredicate(type: .not, subpredicates: [clause.predicate]))
-}
-
-
 // MARK: - Where
 
 /**
  The `Where` clause specifies the conditions for a fetch or a query.
  */
 public struct Where: FetchClause, QueryClause, DeleteClause, Hashable {
+    
+    /**
+     Combines two `Where` predicates together using `AND` operator
+     */
+    public static func && (left: Where, right: Where) -> Where {
+        
+        return Where(NSCompoundPredicate(type: .and, subpredicates: [left.predicate, right.predicate]))
+    }
+    
+    /**
+     Combines two `Where` predicates together using `OR` operator
+     */
+    public static func || (left: Where, right: Where) -> Where {
+        
+        return Where(NSCompoundPredicate(type: .or, subpredicates: [left.predicate, right.predicate]))
+    }
+    
+    /**
+     Inverts the predicate of a `Where` clause using `NOT` operator
+     */
+    public static prefix func ! (clause: Where) -> Where {
+        
+        return Where(NSCompoundPredicate(type: .not, subpredicates: [clause.predicate]))
+    }
     
     /**
      The `NSPredicate` for the fetch or query
@@ -96,27 +104,33 @@ public struct Where: FetchClause, QueryClause, DeleteClause, Hashable {
     }
     
     /**
+     Initializes a `Where` clause that compares equality to `nil`
+     
+     - parameter keyPath: the keyPath to compare with
+     - parameter value: the arguments for the `==` operator
+     */
+    public init(_ keyPath: KeyPath, isEqualTo value: Void?) {
+        
+        self.init(NSPredicate(format: "\(keyPath) == nil"))
+    }
+    
+    /**
      Initializes a `Where` clause that compares equality
      
      - parameter keyPath: the keyPath to compare with
      - parameter value: the arguments for the `==` operator
      */
-    public init(_ keyPath: KeyPath, isEqualTo value: Any?) {
+    public init<T: CoreStoreQueryableAttributeType>(_ keyPath: KeyPath, isEqualTo value: T?) {
         
-        self.init(value == nil
-            ? NSPredicate(format: "\(keyPath) == nil")
-            : NSPredicate(format: "\(keyPath) == %@", argumentArray: [value!]))
-    }
-    
-    /**
-     Initializes a `Where` clause that compares membership
-     
-     - parameter keyPath: the keyPath to compare with
-     - parameter list: the array to check membership of
-     */
-    public init(_ keyPath: KeyPath, isMemberOf list: [Any]) {
-        
-        self.init(NSPredicate(format: "\(keyPath) IN %@", list))
+        switch value {
+            
+        case nil,
+             is NSNull:
+            self.init(NSPredicate(format: "\(keyPath) == nil"))
+            
+        case let value?:
+            self.init(NSPredicate(format: "\(keyPath) == %@", argumentArray: [value.cs_toQueryableNativeType()]))
+        }
     }
     
     /**
@@ -125,9 +139,9 @@ public struct Where: FetchClause, QueryClause, DeleteClause, Hashable {
      - parameter keyPath: the keyPath to compare with
      - parameter list: the sequence to check membership of
      */
-    public init<S: Sequence>(_ keyPath: KeyPath, isMemberOf list: S) where S.Iterator.Element: Any {
+    public init<S: Sequence>(_ keyPath: KeyPath, isMemberOf list: S) where S.Iterator.Element: CoreStoreQueryableAttributeType {
         
-        self.init(NSPredicate(format: "\(keyPath) IN %@", Array(list) as NSArray))
+        self.init(NSPredicate(format: "\(keyPath) IN %@", list.map({ $0.cs_toQueryableNativeType() }) as NSArray))
     }
     
     /**
